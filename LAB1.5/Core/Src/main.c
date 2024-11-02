@@ -90,34 +90,11 @@ int main(void)
   /* USER CODE END 2 */
 
   void display7SEG(int num, uint32_t GPIO_PIN) {
-        char segNum[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
-        //char state = segNum[num];
-        for (int i = 0; i < 7; ++i) {
-        	HAL_GPIO_WritePin(GPIOB, GPIO_PIN << i, (segNum[num] >> i) & 1);
-        }
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 0, (state >> 0) & 1); // Segment A
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 1, (state >> 1) & 1); // Segment B
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 2, (state >> 2) & 1); // Segment C
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 3, (state >> 3) & 1); // Segment D
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 4, (state >> 4) & 1); // Segment E
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 5, (state >> 5) & 1); // Segment F
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN << 6, (state >> 6) & 1); // Segment G
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, (state & 0x01) ? SET : RESET); // Segment A1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, (state & 0x02) ? SET : RESET); // Segment B1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_2, (state & 0x04) ? SET : RESET); // Segment C1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, (state & 0x08) ? SET : RESET); // Segment D1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, (state & 0x10) ? SET : RESET); // Segment E1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, (state & 0x20) ? SET : RESET); // Segment F1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, (state & 0x40) ? SET : RESET); // Segment G1
-//        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, (state & 0x01) ? SET : RESET); // Segment A2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, (state & 0x02) ? SET : RESET); // Segment B2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, (state & 0x04) ? SET : RESET); // Segment C2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, (state & 0x08) ? SET : RESET); // Segment D2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, (state & 0x10) ? SET : RESET); // Segment E2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, (state & 0x20) ? SET : RESET); // Segment F2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, (state & 0x40) ? SET : RESET); // Segment G2
+	char segNum[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+	for (int i = 0; i < 7; ++i) {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN << i, (segNum[num] >> i) & 1);
+	}
   }
-
   int red = 5, yellow = 2, green = 3;
   int direct = 1;
   while (1) {

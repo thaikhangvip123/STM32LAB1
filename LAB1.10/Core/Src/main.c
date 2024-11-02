@@ -107,12 +107,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int second = 0;
-  int minute = 0;
-  int hour = 0;
+  int second = 55;
+  int minute = 59;
+  int hour = 3;
   while (1) {
     /* USER CODE END WHILE */
-	second++;
+	//second++;
 	if (second >= 60) {
 		minute++;
 		second = 0;
@@ -128,6 +128,7 @@ int main(void)
 	setNumberOnClock(hour);
 	setNumberOnClock(minute / 5);
 	setNumberOnClock(second / 5);
+	second++;
 	HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }

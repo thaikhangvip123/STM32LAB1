@@ -37,13 +37,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001562c  00000000  00000000  000246c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000462d  00000000  00000000  00039cf4  2**0
+ 17 .debug_line   0000462b  00000000  00000000  00039cf4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00079b0d  00000000  00000000  0003e321  2**0
+ 18 .debug_str    00079b0d  00000000  00000000  0003e31f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000b7e2e  2**0
+ 19 .comment      00000053  00000000  00000000  000b7e2c  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000d54  00000000  00000000  000b7e84  2**2
+ 20 .debug_frame  00000d54  00000000  00000000  000b7e80  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -89,18 +89,17 @@ Disassembly of section .text:
  8000152:	60f8      	str	r0, [r7, #12]
  8000154:	60b9      	str	r1, [r7, #8]
  8000156:	f8c7 c004 	str.w	ip, [r7, #4]
-        char segNum[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+	char segNum[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
  800015a:	4a15      	ldr	r2, [pc, #84]	; (80001b0 <display7SEG.5430+0x64>)
  800015c:	f107 0310 	add.w	r3, r7, #16
  8000160:	ca07      	ldmia	r2, {r0, r1, r2}
  8000162:	c303      	stmia	r3!, {r0, r1}
  8000164:	801a      	strh	r2, [r3, #0]
-        //char state = segNum[num];
-        for (int i = 0; i < 7; ++i) {
+	for (int i = 0; i < 7; ++i) {
  8000166:	2300      	movs	r3, #0
  8000168:	61fb      	str	r3, [r7, #28]
  800016a:	e018      	b.n	800019e <display7SEG.5430+0x52>
-        	HAL_GPIO_WritePin(GPIOB, GPIO_PIN << i, (segNum[num] >> i) & 1);
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN << i, (segNum[num] >> i) & 1);
  800016c:	68ba      	ldr	r2, [r7, #8]
  800016e:	69fb      	ldr	r3, [r7, #28]
  8000170:	fa02 f303 	lsl.w	r3, r2, r3
@@ -118,18 +117,14 @@ Disassembly of section .text:
  8000190:	461a      	mov	r2, r3
  8000192:	4808      	ldr	r0, [pc, #32]	; (80001b4 <display7SEG.5430+0x68>)
  8000194:	f000 fd24 	bl	8000be0 <HAL_GPIO_WritePin>
-        for (int i = 0; i < 7; ++i) {
+	for (int i = 0; i < 7; ++i) {
  8000198:	69fb      	ldr	r3, [r7, #28]
  800019a:	3301      	adds	r3, #1
  800019c:	61fb      	str	r3, [r7, #28]
  800019e:	69fb      	ldr	r3, [r7, #28]
  80001a0:	2b06      	cmp	r3, #6
  80001a2:	dde3      	ble.n	800016c <display7SEG.5430+0x20>
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, (state & 0x04) ? SET : RESET); // Segment C2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, (state & 0x08) ? SET : RESET); // Segment D2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, (state & 0x10) ? SET : RESET); // Segment E2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, (state & 0x20) ? SET : RESET); // Segment F2
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, (state & 0x40) ? SET : RESET); // Segment G2
+	}
   }
  80001a4:	bf00      	nop
  80001a6:	bf00      	nop
@@ -154,7 +149,6 @@ int main(void)
  80001c8:	f000 f908 	bl	80003dc <SystemClock_Config>
   MX_GPIO_Init();
  80001cc:	f000 f942 	bl	8000454 <MX_GPIO_Init>
-
   int red = 5, yellow = 2, green = 3;
  80001d0:	2305      	movs	r3, #5
  80001d2:	617b      	str	r3, [r7, #20]

@@ -88,7 +88,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
-
+//
   /* Infinite loop */
   HAL_GPIO_WritePin(GPIOA, LED_RED_Pin, SET);
   HAL_GPIO_WritePin(GPIOA, LED_YELLOW_Pin, RESET);
