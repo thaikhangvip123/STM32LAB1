@@ -61,14 +61,7 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-#define LED_COUNT 12
-GPIO_PinState LEDS[LED_COUNT] = {
-    GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3,
-    GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7,
-    GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11};
-void setNumberOnClock(int num) {
-	HAL_GPIO_WritePin(GPIOB, LEDS[num], SET);
-}
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -94,13 +87,39 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+	#define LED_COUNT 12
+	GPIO_PinState LEDS[LED_COUNT] = {
+		GPIO_PIN_0, GPIO_PIN_1, GPIO_PIN_2, GPIO_PIN_3,
+		GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7,
+		GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11};
+	void testLed (int n) {
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4 | GPIO_PIN_5 |
+						GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8 |
+						GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 |
+						GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 |
+						GPIO_PIN_15, SET);
+		HAL_GPIO_WritePin(GPIOA, ledPin[n], RESET);
+	}
+	void clearAllClock() {
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 |
+				GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 |
+				GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11, RESET);
+	}
+	void setNumberOnClock(int num) {
+		HAL_GPIO_WritePin(GPIOB, LEDS[num], SET);
+	}
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	int n = 0;
+  while (1) {
+	  clearAllClock();
+	  testLed(n);
+	  setNumberOnClock(4);
+	  n++;
+	  if(n >= 12) n = 0;
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

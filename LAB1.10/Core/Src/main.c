@@ -62,21 +62,7 @@ static void MX_GPIO_Init(void);
   * @retval int
   */
 
-uint16_t LEDS[12] = {
-    GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7,
-    GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11,
-    GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15};
-void clearAllClock() {
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 |
-		    GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 |
-		    GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, SET);
-}
-void setNumberOnClock(int num) {
-	HAL_GPIO_WritePin(GPIOA, LEDS[num], RESET);
-}
-void clearNumberOnClock(int num) {
-	HAL_GPIO_WritePin(GPIOA, LEDS[num], SET);
-}
+
 int main(void)
 {
   /* USER CODE BEGIN 1 */
@@ -102,7 +88,21 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  uint16_t LEDS[12] = {
+      GPIO_PIN_4, GPIO_PIN_5, GPIO_PIN_6, GPIO_PIN_7,
+      GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11,
+      GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15};
+  void clearAllClock() {
+  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 |
+  		    GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 |
+  		    GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, SET);
+  }
+  void setNumberOnClock(int num) {
+  	HAL_GPIO_WritePin(GPIOA, LEDS[num], RESET);
+  }
+  void clearNumberOnClock(int num) {
+  	HAL_GPIO_WritePin(GPIOA, LEDS[num], SET);
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
